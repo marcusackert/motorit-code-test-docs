@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motorit.CodeTest Flow Diagram</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        .diagram-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 30px;
+            overflow-x: auto;
+        }
+        .title {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .flow-diagram {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            min-width: 1200px;
+        }
+        .layer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+        }
+        .box {
+            background: linear-gradient(145deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            min-width: 180px;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+        .box:hover {
+            transform: translateY(-5px);
+        }
+        .application { background: linear-gradient(145deg, #ff6b6b 0%, #ee5a52 100%); }
+        .factory { background: linear-gradient(145deg, #4ecdc4 0%, #44a08d 100%); }
+        .calculator { background: linear-gradient(145deg, #45b7d1 0%, #96c93d 100%); }
+        .strategy { background: linear-gradient(145deg, #f093fb 0%, #f5576c 100%); }
+        .helper { background: linear-gradient(145deg, #ffecd2 0%, #fcb69f 100%); color: #333; }
+        .repository { background: linear-gradient(145deg, #a8edea 0%, #fed6e3 100%); color: #333; }
+        .entity { background: linear-gradient(145deg, #d299c2 0%, #fef9d7 100%); color: #333; }
+        .config { background: linear-gradient(145deg, #89f7fe 0%, #66a6ff 100%); color: #333; }
+        
+        .arrow {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 15px solid #333;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+        .layer:last-child .arrow { display: none; }
+        
+        .flow-line {
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .flow-line::before {
+            content: '';
+            width: 2px;
+            height: 100%;
+            background: #333;
+            display: block;
+        }
+        
+        .description {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+        
+        .legend-box {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        
+        .side-flow {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 10px 0;
+        }
+        
+        .horizontal-arrow {
+            width: 30px;
+            height: 2px;
+            background: #333;
+            position: relative;
+        }
+        .horizontal-arrow::after {
+            content: '';
+            position: absolute;
+            right: -5px;
+            top: -3px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid #333;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="diagram-container">
+        <h1 class="title">Motorit.CodeTest Project Flow Diagram</h1>
+        
+        <div class="flow-diagram">
+            <!-- Application Layer -->
+            <div class="layer">
+                <div class="box application">
+                    <strong>Program.cs</strong><br>
+                    <small>Entry Point / Console Application</small>
+                </div>
+                <div class="arrow"></div>
+            </div>
+            
+            <div class="flow-line"></div>
+            
+            <!-- Factory Layer -->
+            <div class="layer">
+                <div class="box factory">
+                    <strong>TollCalculatorFactory</strong><br>
+                    <small>Creates & Configures Dependencies</small>
+                </div>
+                <div class="arrow"></div>
+            </div>
+            
+            <div class="flow-line"></div>
+            
+            <!-- Calculator Layer -->
+            <div class="layer">
+                <div class="box calculator">
+                    <strong>TollCalculator</strong><br>
+                    <small>Main Calculation Orchestrator</small>
+                </div>
+                <div class="arrow"></div>
+            </div>
+            
+            <div class="flow-line"></div>
+            
+            <!-- Strategy Layer -->
+            <div class="layer">
+                <div class="box strategy">
+                    <strong>StandardCalculatorStrategy</strong><br>
+                    <small>ICalculatorStrategy Implementation</small>
+                </div>
+                <div class="arrow"></div>
+            </div>
+            
+            <div class="flow-line"></div>
+            
+            <!-- Helper Layer -->
+            <div class="layer">
+                <div class="box helper">
+                    <strong>DateTimeHelper</strong><br>
+                    <small>Date/Time Operations</small>
+                </div>
+                <div class="box helper">
+                    <strong>TollFeeHelper</strong><br>
+                    <small>Fee Calculations</small>
+                </div>
+                <div class="box helper">
+                    <strong>ExplanationHelper</strong><br>
+                    <small>Debug Output</small>
+                </div>
+                <div class="arrow"></div>
+            </div>
+            
+            <div class="flow-line"></div>
+            
+            <!-- Repository Layer -->
+            <div class="layer">
+                <div class="box repository">
+                    <strong>VehicleRepository</strong><br>
+                    <small>Vehicle Data Access</small>
+                </div>
+                <div class="box repository">
+                    <strong>HolidayRepository</strong><br>
+                    <small>Holiday Data Access</small>
+                </div>
+                <div class="box repository">
+                    <strong>TollFeeRepository</strong><br>
+                    <small>Fee Structure Data</small>
+                </div>
+                <div class="arrow"></div>
+            </div>
+            
+            <div class="flow-line"></div>
+            
+            <!-- Data Layer -->
+            <div class="layer">
+                <div class="box entity">
+                    <strong>Vehicle Entity</strong><br>
+                    <small>Vehicle Type & Properties</small>
+                </div>
+                <div class="box entity">
+                    <strong>Holiday Entity</strong><br>
+                    <small>Holiday Dates</small>
+                </div>
+                <div class="box entity">
+                    <strong>TollFee Entity</strong><br>
+                    <small>Fee Structure by Time</small>
+                </div>
+            </div>
+            
+            <!-- Configuration Side Flow -->
+            <div style="position: absolute; right: 20px; top: 300px;">
+                <div class="box config">
+                    <strong>TollCalculatorOptions</strong><br>
+                    <small>Configuration Settings</small>
+                </div>
+            </div>
+        </div>
+        
+        <div class="description">
+            <h3>Flow Description</h3>
+            <p><strong>1. Application Entry:</strong> Program.cs reads input data from default.json and processes toll calculations</p>
+            <p><strong>2. Factory Creation:</strong> TollCalculatorFactory creates and wires up all dependencies with configuration</p>
+            <p><strong>3. Toll Calculation:</strong> TollCalculator receives requests and delegates to strategy pattern</p>
+            <p><strong>4. Strategy Processing:</strong> StandardCalculatorStrategy implements the core business logic</p>
+            <p><strong>5. Helper Services:</strong> Various helpers handle specific concerns (dates, fees, explanations)</p>
+            <p><strong>6. Data Access:</strong> Repositories provide access to vehicle, holiday, and fee data</p>
+            <p><strong>7. Data Entities:</strong> Strongly-typed entities represent the domain objects</p>
+        </div>
+        
+        <div class="description">
+            <h3>Key Features</h3>
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-box application"></div>
+                    <span>Console Application Layer</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box factory"></div>
+                    <span>Dependency Injection / Factory</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box calculator"></div>
+                    <span>Business Logic Orchestration</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box strategy"></div>
+                    <span>Strategy Pattern Implementation</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box helper"></div>
+                    <span>Helper Services</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box repository"></div>
+                    <span>Data Access Layer</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box entity"></div>
+                    <span>Domain Entities</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box config"></div>
+                    <span>Configuration</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="description">
+            <h3>Architecture Patterns</h3>
+            <ul>
+                <li><strong>Strategy Pattern:</strong> ICalculatorStrategy allows different calculation implementations</li>
+                <li><strong>Repository Pattern:</strong> Data access abstracted through repository interfaces</li>
+                <li><strong>Factory Pattern:</strong> TollCalculatorFactory handles complex object creation</li>
+                <li><strong>Dependency Injection:</strong> Constructor injection for loose coupling</li>
+                <li><strong>Clean Architecture:</strong> Separation of concerns with distinct layers</li>
+                <li><strong>SOLID Principles:</strong> Single responsibility, dependency inversion, etc.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
